@@ -38,38 +38,248 @@
     </header>
 
     <section class="content-section container-custom">
+        <div class="content-box">
+            <h2>¿Qué es CSS?</h2>
+            <p>CSS (Cascading Style Sheets) es el lenguaje usado para describir la presentación de un documento HTML.
+                Controla colores, fuentes, espaciado, diseño y más.</p>
+        </div>
 
         <div class="content-box">
-
-            <h2>CSS</h2>
-
-            <p>
-                Internet es una red mundial de computadoras conectadas.
-            </p>
-
-            <div class="code-box">
-
-                <pre>
-GET /index.html HTTP/1.1
-Host: ejemplo.com
-</pre>
-
+            <h2>Formas de aplicar CSS</h2>
+            <p>Existen tres formas de agregar estilos a un documento HTML:</p>
+            <div class="row g-3 mt-2 align-items-stretch">
+                <div class="col-md-4">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>CSS en línea</strong><br>
+                        <small>Se aplica directamente en la etiqueta con el atributo <code>style</code>.</small>
+                        <div class="code-box mt-2">
+                            <pre>&lt;p style="color:red;"&gt;Texto&lt;/p&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>CSS interno</strong><br>
+                        <small>Se escribe dentro de una etiqueta <code>&lt;style&gt;</code> en el
+                            <code>&lt;head&gt;</code>.</small>
+                        <div class="code-box mt-2">
+                            <pre>&lt;style&gt;
+  p { color: red; }
+&lt;/style&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>CSS externo</strong><br>
+                        <small>Se vincula un archivo <code>.css</code> separado con <code>&lt;link&gt;</code>.</small>
+                        <div class="code-box mt-2">
+                            <pre>&lt;link rel="stylesheet"
+  href="style.css"&gt;</pre>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
 
         <div class="content-box">
-
-            <h2>Modelo OSI</h2>
-
-            <p>
-                El modelo OSI divide la comunicación en 7 capas.
-            </p>
-
-            <img src="../img/internet.png" alt="OSI">
-
+            <h2>Selectores principales</h2>
+            <p>Los selectores indican a qué elementos HTML se aplican los estilos:</p>
+            <div class="table-responsive mt-3">
+                <table class="table table-dark table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Selector</th>
+                            <th>Ejemplo</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Etiqueta</td>
+                            <td><code>p { }</code></td>
+                            <td>Aplica a todos los elementos &lt;p&gt;</td>
+                        </tr>
+                        <tr>
+                            <td>Clase</td>
+                            <td><code>.card { }</code></td>
+                            <td>Aplica a elementos con esa clase</td>
+                        </tr>
+                        <tr>
+                            <td>ID</td>
+                            <td><code>#menu { }</code></td>
+                            <td>Aplica a un elemento único con ese id</td>
+                        </tr>
+                        <tr>
+                            <td>Descendente</td>
+                            <td><code>nav a { }</code></td>
+                            <td>Aplica a &lt;a&gt; dentro de &lt;nav&gt;</td>
+                        </tr>
+                        <tr>
+                            <td>Pseudo-clase</td>
+                            <td><code>a:hover { }</code></td>
+                            <td>Aplica cuando el usuario pasa el mouse</td>
+                        </tr>
+                        <tr>
+                            <td>Pseudo-elemento</td>
+                            <td><code>p::first-line { }</code></td>
+                            <td>Aplica a una parte específica del elemento</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
+        <div class="content-box">
+            <h2>Propiedades principales</h2>
+            <div class="code-box">
+                <pre>/* Color y fondo */
+color: #ffffff;
+background: #000000;
+
+/* Tipografía */
+font-family: 'Poppins', sans-serif;
+font-size: 1rem;
+
+/* Espaciado */
+margin: 20px;
+padding: 10px;
+
+/* Borde */
+border: 1px solid purple;
+
+/* Dimensiones */
+width: 100%;
+height: 200px;</pre>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>Modelo de Caja (Box Model)</h2>
+            <p>Todo elemento HTML es una caja compuesta por cuatro capas:</p>
+            <div class="row g-3 mt-2 align-items-stretch">
+                <div class="col-md-3">
+                    <div class="mb-0 p-3 rounded h-100 text-center"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>Content</strong><br><small>El contenido real (texto, imagen)</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-0 p-3 rounded h-100 text-center"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>Padding</strong><br><small>Espacio entre el contenido y el borde</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-0 p-3 rounded h-100 text-center"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>Border</strong><br><small>El borde que rodea el padding</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-0 p-3 rounded h-100 text-center"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>Margin</strong><br><small>Espacio exterior entre elementos</small>
+                    </div>
+                </div>
+            </div>
+            <div class="code-box mt-3">
+                <pre>div {
+  margin: 20px;
+  border: 2px solid purple;
+  padding: 15px;
+  width: 300px;
+}</pre>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>Display y Position</h2>
+            <div class="table-responsive mt-3">
+                <table class="table table-dark table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Propiedad</th>
+                            <th>Valor</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="3">display</td>
+                            <td><code>block</code></td>
+                            <td>Ocupa todo el ancho disponible</td>
+                        </tr>
+                        <tr>
+                            <td><code>inline</code></td>
+                            <td>Solo ocupa el espacio de su contenido</td>
+                        </tr>
+                        <tr>
+                            <td><code>flex</code></td>
+                            <td>Activa el modelo Flexbox</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">position</td>
+                            <td><code>static</code></td>
+                            <td>Posición normal (por defecto)</td>
+                        </tr>
+                        <tr>
+                            <td><code>relative</code></td>
+                            <td>Relativo a su posición original</td>
+                        </tr>
+                        <tr>
+                            <td><code>absolute</code></td>
+                            <td>Relativo al ancestro posicionado más cercano</td>
+                        </tr>
+                        <tr>
+                            <td><code>fixed</code></td>
+                            <td>Fijo en la pantalla al hacer scroll</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>Flexbox</h2>
+            <p>Flexbox es un modelo de diseño que permite alinear y distribuir elementos fácilmente dentro de un
+                contenedor.</p>
+            <div class="code-box">
+                <pre>.contenedor {
+  display: flex;
+  justify-content: center;  /* horizontal */
+  align-items: center;      /* vertical */
+  gap: 20px;                /* espacio entre hijos */
+  flex-wrap: wrap;          /* permite salto de línea */
+}</pre>
+            </div>
+            <div class="row g-3 mt-2 align-items-stretch">
+                <div class="col-md-4">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>justify-content</strong><br>
+                        <small>Alinea elementos en el eje principal (horizontal por defecto)</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>align-items</strong><br>
+                        <small>Alinea elementos en el eje secundario (vertical por defecto)</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>flex-wrap</strong><br>
+                        <small>Permite que los elementos salten a la siguiente línea si no caben</small>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">
