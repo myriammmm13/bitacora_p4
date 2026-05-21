@@ -39,39 +39,66 @@
     </header>
 
     <section class="content-section container-custom">
+        <div class="content-box">
+            <h2>Cliente vs Servidor</h2>
+            <p>En el modelo web, la comunicación ocurre entre dos roles principales:</p>
+            <div class="row g-3 mt-2 align-items-stretch">
+                <div class="col-md-6">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong><i class="bi bi-laptop me-2"></i>Cliente</strong><br></br> <small>Es el navegador o
+                            aplicación
+                            que hace la solicitud. Envía peticiones HTTP al servidor y
+                            recibe la respuesta para mostrarla al usuario. Ejemplos: Chrome, Firefox, una app
+                            móvil.</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong><i class="bi bi-hdd-rack me-2"></i>Servidor</strong><br><br>
+                        <small>Es la máquina o programa que recibe las peticiones, las procesa y devuelve una
+                            respuesta. Ejemplos: Apache, Nginx, un servidor Spring Boot.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="content-box">
+            <h2>HTTP Request y HTTP Response</h2>
+            <p>Toda comunicación web sigue el ciclo petición-respuesta:</p>
+            <div class="row g-3 mt-2 align-items-stretch">
+                <div class="col-md-6">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>HTTP Request (Petición)</strong>
+                        <div class="code-box mt-2">
+                            <pre>GET /productos HTTP/1.1
+Host: tienda.com
+Accept: text/html</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <strong>HTTP Response (Respuesta)</strong>
+                        <div class="code-box mt-2">
+                            <pre>HTTP/1.1 200 OK
+Content-Type: text/html
 
-            <h2>Back-End</h2>
-
-            <p>
-                Internet es una red mundial de computadoras conectadas.
-            </p>
-
-            <div class="code-box">
-
-                <pre>
-GET /index.html HTTP/1.1
-Host: ejemplo.com
-</pre>
-
+&lt;html&gt;...&lt;/html&gt;</pre>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-        </div>
-
-        <div class="content-box">
-
-            <h2>Modelo OSI</h2>
-
-            <p>
-                El modelo OSI divide la comunicación en 7 capas.
-            </p>
-
-            <img src="../img/internet.png" alt="OSI">
-
-        </div>
-
+            <div class="table-responsive mt-3">
+                <table class="table table-dark table-bordered table-hover">
+                </table>
+            </div>
     </section>
+
 
     <footer class="footer">
         <p>Proyecto Programación IV
