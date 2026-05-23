@@ -4,146 +4,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repositorio P4</title>
+    <title>Juego Pac-Man - Repositorio P4</title>
     <link rel="icon" type="image/jpg" href="../img/ditto.jpg">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
     <style>
+        #game-info {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: #1e1e2e;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #B14CFF;
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* REQUISITO: Interfaz visual simple pero funcional */
         #game-board {
             display: grid;
-            grid-template-columns: repeat(10, 40px);
-            gap: 2px;
+            grid-template-columns: repeat(15, 30px);
+            gap: 0px;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 20px;
+            background-color: black;
+            padding: 15px;
+            border-radius: 10px;
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0px 0px 20px rgba(177, 76, 255, 0.4);
         }
 
         .cell {
-            width: 40px;
-            height: 40px;
-            background: #1e1e2a;
-            border: 1px solid #333;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wall {
+            background-color: #1919A6;
+            border-radius: 4px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #FFB8AE;
+            border-radius: 50%;
         }
 
         .player {
-            background: yellow;
+            width: 24px;
+            height: 24px;
+            background-color: yellow;
             border-radius: 50%;
+            clip-path: polygon(100% 74%, 44% 48%, 100% 21%, 100% 0, 74% 0, 0 0, 0 100%, 100% 100%);
         }
 
-        .enemy {
-            background: red;
-            border-radius: 50%;
+        .ghost {
+            width: 24px;
+            height: 24px;
+            border-radius: 50% 50% 0 0;
+            position: relative;
         }
     </style>
-
 </head>
 
 <body>
 
     <header class="header">
-
         <div class="container-custom nav-container">
-
             <a href="../index.html" class="logo">
-                Pac-Man
+                Pac-Man JS
             </a>
             <nav class="nav-links">
                 <a href="../index.html">Home</a>
+                <a href="internet.html">Internet</a>
+                <a href="html.html">HTML</a>
+                <a href="css.html">CSS</a>
+                <a href="backend.html">Back-End</a>
+                <a href="javascript.html">JavaScript</a>
+                <a href="juego.html" style="color: var(--primary2);">Juego</a>
             </nav>
-
         </div>
-
     </header>
 
     <section class="content-section container-custom">
+        <div class="text-center mb-4 text-white">
+            <h1 class="bg-purple d-inline-block px-3 py-1 rounded">Proyecto de JavaScript Puro</h1>
+            <p>Usa las flechas del teclado para moverte. Come todos los puntos y evita a los fantasmas.</p>
+        </div>
 
+        <div id="game-info">Puntuación: <span id="score">0</span> / <span id="total">0</span></div>
         <div id="game-board"></div>
-
     </section>
 
     <script>
-
         const board = document.getElementById("game-board");
+        const scoreDisplay = document.getElementById("score");
+        const totalDisplay = document.getElementById("total");
+
+        // REQUISITO: Generación de tablero con obstáculos y caminos
+        // 1: Pared, 0: Fruta, 2: Espacio vacío
+        const layout = [
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1,
+            1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1,
+            1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,
+            1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1,
+            1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1,
+            1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,
+            1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1,
+            1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1,
+            1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ];
 
         const cells = [];
+        let score = 0;
+        let totalDots = 0;
+        let playerIndex = 16; // Posición de inicio del jugador
+        let gameActive = true;
 
-        for (let i = 0; i < 100; i++) {
-            const cell = document.createElement("div");
+        // Enemigos
+        const ghosts = [
+            { index: 28, color: '#FF0000' }, // Rojo
+            { index: 196, color: '#FFB8FF' }, // Rosa
+            { index: 118, color: '#00FFFF' }  // Cyan
+        ];
 
-            cell.classList.add("cell");
+        // Función para renderizar el mapa
+        function createBoard() {
+            for (let i = 0; i < layout.length; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
 
-            board.appendChild(cell);
+                if (layout[i] === 1) {
+                    cell.classList.add("wall");
+                } else if (layout[i] === 0) {
+                    const dot = document.createElement("div");
+                    dot.classList.add("dot");
+                    cell.appendChild(dot);
+                    totalDots++; // Contamos el total para la condición de victoria
+                }
 
-            cells.push(cell);
+                board.appendChild(cell);
+                cells.push(cell);
+            }
+            totalDisplay.innerText = totalDots;
         }
 
-        let playerPosition = 0;
-        let enemyPosition = 99;
+        createBoard();
 
-        cells[playerPosition].classList.add("player");
-        cells[enemyPosition].classList.add("enemy");
-
+        // Función para dibujar jugador y fantasmas en sus posiciones
         function draw() {
-
+            // Limpiar posiciones anteriores
             cells.forEach(cell => {
-                cell.classList.remove("player");
-                cell.classList.remove("enemy");
+                const p = cell.querySelector('.player');
+                if (p) p.remove();
+
+                const g = cell.querySelector('.ghost');
+                if (g) g.remove();
             });
 
-            cells[playerPosition].classList.add("player");
-            cells[enemyPosition].classList.add("enemy");
+            // Dibujar Jugador
+            const playerDiv = document.createElement("div");
+            playerDiv.classList.add("player");
+            cells[playerIndex].appendChild(playerDiv);
+
+            // Dibujar Fantasmas
+            ghosts.forEach(ghost => {
+                const ghostDiv = document.createElement("div");
+                ghostDiv.classList.add("ghost");
+                ghostDiv.style.backgroundColor = ghost.color;
+                cells[ghost.index].appendChild(ghostDiv);
+            });
         }
 
+        // REQUISITO: Sistema de puntuación y Condición de victoria
+        function eatDot() {
+            if (layout[playerIndex] === 0) {
+                layout[playerIndex] = 2; // Marcar la celda como vacía
+                const dot = cells[playerIndex].querySelector('.dot');
+                if (dot) dot.remove();
+                score++;
+                scoreDisplay.innerText = score;
+
+                // Verificar si ganó
+                if (score === totalDots) {
+                    gameActive = false;
+                    setTimeout(() => {
+                        alert("¡VICTORIA! Has recolectado todos los puntos.");
+                        location.reload();
+                    }, 100);
+                }
+            }
+        }
+
+        // REQUISITO: Detección de colisión (Jugador - Enemigo) y Condición de derrota
+        function checkCollision() {
+            ghosts.forEach(ghost => {
+                if (ghost.index === playerIndex) {
+                    gameActive = false;
+                    setTimeout(() => {
+                        alert("¡DERROTA! Un fantasma te ha atrapado.");
+                        location.reload();
+                    }, 100);
+                }
+            });
+        }
+
+        // REQUISITO: Movimiento mediante el teclado
         function movePlayer(event) {
+            if (!gameActive) return;
 
-            if (event.key === "ArrowRight") {
-                playerPosition++;
+            let direction = 0;
+            if (event.key === "ArrowLeft") direction = -1;
+            if (event.key === "ArrowRight") direction = 1;
+            if (event.key === "ArrowUp") direction = -15;
+            if (event.key === "ArrowDown") direction = 15;
+
+            // Evitar que la pantalla haga scroll al jugar
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(event.key) > -1) {
+                event.preventDefault();
             }
 
-            if (event.key === "ArrowLeft") {
-                playerPosition--;
-            }
+            const nextIndex = playerIndex + direction;
 
-            if (event.key === "ArrowDown") {
-                playerPosition += 10;
-            }
-
-            if (event.key === "ArrowUp") {
-                playerPosition -= 10;
-            }
-
-            if (playerPosition < 0) playerPosition = 0;
-            if (playerPosition > 99) playerPosition = 99;
-            draw();
-
-            if (playerPosition === enemyPosition) {
-                alert("Perdiste");
+            // Validar que el siguiente movimiento no sea una pared
+            if (direction !== 0 && layout[nextIndex] !== 1) {
+                playerIndex = nextIndex;
+                eatDot();
+                checkCollision();
+                draw();
             }
         }
 
-        function moveEnemy() {
+        // REQUISITO: Enemigos con comportamiento básico (Movimiento Aleatorio)
+        function moveGhosts() {
+            if (!gameActive) return;
 
-            enemyPosition--;
+            ghosts.forEach(ghost => {
+                const directions = [-1, 1, -15, 15]; // Izquierda, Derecha, Arriba, Abajo
 
-            if (enemyPosition < 0) {
-                enemyPosition = 99;
-            }
+                // Filtrar solo las direcciones que no chocan con paredes
+                const validMoves = directions.filter(dir => layout[ghost.index + dir] !== 1);
 
+                if (validMoves.length > 0) {
+                    // Seleccionar un movimiento aleatorio de los válidos
+                    const randomDir = validMoves[Math.floor(Math.random() * validMoves.length)];
+                    ghost.index += randomDir;
+                }
+            });
+
+            checkCollision();
             draw();
-
-            if (playerPosition === enemyPosition) {
-                alert("Perdiste");
-            }
         }
 
-        setInterval(moveEnemy, 500);
+        // Inicializar el juego
+        draw();
         document.addEventListener("keydown", movePlayer);
-
+        // Intervalo para mover automáticamente a los fantasmas (400 milisegundos)
+        setInterval(moveGhosts, 400); 
     </script>
 
-    <footer class="footer">
-        <p>Proyecto Programación IV
-        </p>
+    <footer class="footer mt-5">
+        <p>Proyecto Programación IV</p>
         <p>Autor: MJ Watson - 2026</p>
     </footer>
 

@@ -129,500 +129,169 @@ solicitado como HTML, JSON u otros formatos.
                 <img src="../img/jigglypuff.jpg" alt="imagen_jigglypuff">
             </div>
         </section>
-        <div class="section-label">Spring MVC</div>
-        <h2 class="bg-purple">Controladores: @Controller y @RestController</h2>
-        <p>
-            Los controladores son clases que manejan las peticiones HTTP entrantes. Spring Boot ofrece dos
-            anotaciones principales según el tipo de respuesta que se quiera devolver al cliente.
-        </p>
+        <div class="section-label mt-5">Spring MVC</div>
 
+        <div class="content-box">
+            <h2>Controladores: @Controller y @RestController</h2>
+            <p>Los controladores son clases que manejan las peticiones HTTP entrantes. Spring Boot ofrece dos
+                anotaciones principales según el tipo de respuesta.</p>
 
-        <div class="row align-items-stretch">
-            <div class="col-md-6">
-                <div class="inner-card h-100">
-                    <span class="diff-badge controller">@Controller</span>
-                    <strong>Devuelve vistas (HTML)</strong>
-                    <p>Se usa cuando la respuesta es una página HTML renderizada, generalmente con Thymeleaf.
-                        El método retorna el nombre de la plantilla.</p>
-                    <div class="code-box mt-3 inner-card h-100">
-                        <pre>@Controller
+            <div class="row g-4 align-items-stretch mt-3">
+                <div class="col-md-6">
+                    <div class="inner-card h-100 d-flex flex-column">
+                        <span class="diff-badge controller mb-2">@Controller</span>
+                        <strong>Devuelve vistas (HTML)</strong>
+                        <p class="flex-grow-1">Se usa cuando la respuesta es una página HTML renderizada, generalmente
+                            con Thymeleaf. El método retorna el nombre de la plantilla.</p>
+                        <div class="code-box mt-auto h-100">
+                            <pre class="m-0 h-100">@Controller
 public class PaginaController {
- 
     @GetMapping("/inicio")
     public String inicio(Model model) {
         model.addAttribute("titulo", "Hola!");
-        return "inicio"; // → inicio.html
+        return "inicio";
     }
 }</pre>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 h-100">
-                <div class="inner-card h-100">
-                    <span class="diff-badge rest">@RestController</span>
-                    <strong>Devuelve datos (JSON / texto)</strong>
-                    <p>Combina <code>@Controller</code> + <code>@ResponseBody</code>. Cada método serializa
-                        el objeto retornado directamente como JSON, ideal para APIs.</p>
-                    <div class="code-box mt-3 inner-card h-100">
-                        <pre>@RestController
+
+                <div class="col-md-6">
+                    <div class="inner-card h-100 d-flex flex-column">
+                        <span class="diff-badge rest mb-2">@RestController</span>
+                        <strong>Devuelve datos (JSON / texto)</strong>
+                        <p class="flex-grow-1">Combina <code>@Controller</code> + <code>@ResponseBody</code>. Cada
+                            método serializa el objeto retornado como JSON, ideal para APIs modernas.</p>
+                        <div class="code-box mt-auto h-100">
+                            <pre class="m-0 h-100">@RestController
 public class ApiController {
- 
     @GetMapping("/api/saludo")
     public String saludo() {
         return "Hola desde la API";
     }
- 
+
     @GetMapping("/api/datos")
     public Map&lt;String, Object&gt; datos() {
         return Map.of("id", 1, "nombre", "Ana");
     }
 }</pre>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-md-12">
-                <div class="tip-box">
-                    <i class="bi bi-lightbulb me-2"></i>
-                    <strong style="color:var(--primary2)">Diferencia clave:</strong>
-                    usa <code>@Controller</code> cuando tu app sirve páginas web con Thymeleaf,
-                    y <code>@RestController</code> cuando construyes una API que consume un frontend separado o móvil.
-                </div>
-            </div>
 
-                <!-- THYMELEAF -->
-                <div class="content-box">
+            <div class="tip-box mt-4">
+                <i class="bi bi-lightbulb me-2"></i>
+                <strong style="color:var(--primary2)">Diferencia clave:</strong> @Controller devuelve HTML, mientras que
+                @RestController devuelve datos (JSON).
+            </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-7">
+                <div class="content-box h-100">
                     <div class="section-label">Motor de plantillas</div>
                     <h2>Thymeleaf</h2>
-                    <p>
-                        Thymeleaf es un motor de plantillas Java que permite generar HTML dinámico del lado del
-                        servidor.
-                        Utiliza atributos especiales (<span class="thymeleaf-attr">th:*</span>) directamente en el HTML,
-                        lo que
-                        hace
-                        que las plantillas sean válidas incluso sin servidor.
-                    </p>
+                    <p>Permite generar HTML dinámico del lado del servidor utilizando atributos especiales. Funciona
+                        perfectamente integrado con Spring Boot.</p>
 
-                    <div class="row g-3 mt-3">
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-braces me-2"></i>th:text — mostrar variables</strong>
-                                <p>Reemplaza el contenido del elemento con el valor del modelo.</p>
-                                <div class="code-box mt-2 inner-card h-100">
-                                    <pre>&lt;!-- Controlador --&gt;
-model.addAttribute("nombre", "María");
- 
-&lt;!-- Plantilla --&gt;
-&lt;p th:text="${nombre}"&gt;
-    Nombre aquí
-&lt;/p&gt;
-&lt;!-- Resultado: &lt;p&gt;María&lt;/p&gt; --&gt;</pre>
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#pills-text"
+                                type="button">th:text</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-each"
+                                type="button">th:each</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-text">
+                            <p>Muestra valores dinámicos provenientes del controlador.</p>
+                            <div class="code-box">
+                                <pre class="m-0">&lt;p th:text="${mensaje}"&gt;&lt;/p&gt;</pre>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-each">
+                            <p>Itera listas de objetos para crear elementos repetitivos.</p>
+                            <div class="code-box">
+                                <pre class="m-0">&lt;li th:each="f : ${frutas}" th:text="${f}"&gt;&lt;/li&gt;</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="content-box h-100 d-flex flex-column" style="background-color: #252538;">
+                    <div class="section-label">IoC</div>
+                    <h2>Inyección de dependencias</h2>
+                    <p class="flex-grow-1">Permite que Spring gestione automáticamente los objetos (Beans) y sus
+                        dependencias usando <code>@Autowired</code>.</p>
+                    <div class="code-box mt-auto">
+                        <pre class="m-0">@Service
+public class SaludoService {}
+
+@Autowired
+private SaludoService servicio;</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box mt-4">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="../img/cielo.jpg" alt="Cielo decorativo" class="img-fluid rounded"
+                        style="object-fit: cover; height: 100%; min-height: 250px; border: 2px solid rgba(177,76,255,0.4);">
+                </div>
+                <div class="col-md-8">
+                    <div class="section-label">Persistencia y Estado</div>
+                    <h2>Cookies y Sesiones</h2>
+                    <p>Mecanismos esenciales para mantener el estado en el protocolo HTTP, que por naturaleza es
+                        "stateless" (sin estado).</p>
+
+                    <div class="accordion" id="accordionPersistencia">
+                        <div class="accordion-item" style="background: #1e1e2e; border-color: #333;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button text-white" style="background: #2a2a3f;" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    Manejo de Cookies
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                data-bs-parent="#accordionPersistencia">
+                                <div class="accordion-body text-white">
+                                    Archivos pequeños en el navegador.<br><br>
+                                    <strong class="text-white">Crear:</strong>
+                                    <code>Cookie c = new Cookie("user", "Maria"); response.addCookie(c);</code><br>
+                                    <strong class="text-white">Leer:</strong>
+                                    <code>@CookieValue("user") String user;</code>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-arrow-repeat me-2"></i>th:each — listas / bucles</strong>
-                                <p>Itera sobre una colección y repite el elemento por cada ítem.</p>
-                                <div class="code-box mt-2 inner-card h-100">
-                                    <pre>&lt;!-- Controlador --&gt;
-model.addAttribute("frutas",
-    List.of("Mango","Pera","Uva"));
- 
-&lt;!-- Plantilla --&gt;
-&lt;ul&gt;
-  &lt;li th:each="f : ${frutas}"
-      th:text="${f}"&gt;&lt;/li&gt;
-&lt;/ul&gt;</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-signpost-split me-2"></i>th:if / th:unless —
-                                    condicionales</strong>
-                                <p>Muestra u oculta elementos según una condición del modelo.</p>
-                                <div class="code-box mt-2 inner-card h-100">
-                                    <pre>&lt;!-- Controlador --&gt;
-model.addAttribute("activo", true);
- 
-&lt;!-- Plantilla --&gt;
-&lt;p th:if="${activo}"&gt;
-    Usuario activo
-&lt;/p&gt;
-&lt;p th:unless="${activo}"&gt;
-    Usuario inactivo
-&lt;/p&gt;</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-link-45deg me-2"></i>th:href — enlaces dinámicos</strong>
-                                <p>Genera URLs dinámicas con la sintaxis <code>@{...}</code> de Thymeleaf.</p>
-                                <div class="code-box mt-2 inner-card h-100">
-                                    <pre>&lt;!-- Enlace simple --&gt;
-&lt;a th:href="@{/inicio}"&gt;
-    Inicio
-&lt;/a&gt;
- 
-&lt;!-- Enlace con parámetro --&gt;
-&lt;a th:href="@{/usuario/{id}
-    (id=${usuario.id})}"&gt;
-    Ver perfil
-&lt;/a&gt;</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-input-cursor-text me-2"></i>th:value — campos de
-                                    formulario</strong>
-                                <p>Vincula el valor de un campo de formulario a un atributo del modelo.</p>
-                                <div class="code-box mt-2 inner-card h-100">
-                                    <pre>&lt;form th:action="@{/guardar}"
-      method="post"&gt;
-  &lt;input type="text"
-         name="nombre"
-         th:value="${usuario.nombre}"&gt;
-  &lt;button type="submit"&gt;
-      Guardar
-  &lt;/button&gt;
-&lt;/form&gt;</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-layout-text-sidebar me-2"></i>th:fragment — reutilizar
-                                    fragmentos</strong>
-                                <p>Define secciones reutilizables (como navbar o footer) e inclúyelas en otras páginas.
-                                </p>
-                                <div class="code-box mt-2">
-                                    <pre>&lt;!-- fragments.html --&gt;
-&lt;nav th:fragment="navbar"&gt;
-    &lt;a href="/"&gt;Inicio&lt;/a&gt;
-&lt;/nav&gt;
- 
-&lt;!-- otra página --&gt;
-&lt;div th:insert="~{fragments
-    :: navbar}"&gt;
-&lt;/div&gt;</pre>
+
+                        <div class="accordion-item" style="background: #1e1e2e; border-color: #333;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed text-white" style="background: #2a2a3f;"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    Manejo de Sesiones
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionPersistencia">
+                                <div class="accordion-body text-white">
+                                    Almacenan datos temporalmente en el servidor.<br><br>
+                                    <strong class="text-white">Guardar:</strong>
+                                    <code>session.setAttribute("user", "Carlos");</code><br>
+                                    <strong class="text-white">Destruir:</strong> <code>session.invalidate();</code>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- COOKIES -->
-                <div class="content-box">
-                    <div class="section-label">Almacenamiento del cliente</div>
-                    <h2>Cookies</h2>
-                    <p>
-                        Las cookies son pequeños archivos de texto que el servidor envía al navegador del cliente para
-                        almacenar información entre solicitudes. Son útiles para recordar preferencias, sesiones de
-                        usuario
-                        o rastrear actividad.
-                    </p>
-
-                    <div class="row g-3 mt-3 align-items-stretch">
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-plus-circle me-2"></i>Crear una cookie</strong>
-                                <p>Se crea un objeto <code>Cookie</code>, se configura y se añade a la respuesta HTTP.
-                                </p>
-                                <div class="code-box mt-2">
-                                    <pre>@GetMapping("/crear-cookie")
-public String crearCookie(
-        HttpServletResponse response) {
- 
-    Cookie cookie = new Cookie(
-        "usuario", "Maria");
- 
-    cookie.setMaxAge(60 * 60 * 24); // 1 día
-    cookie.setPath("/");
- 
-    response.addCookie(cookie);
-    return "Cookie creada";
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-eye me-2"></i>Leer una cookie</strong>
-                                <p>Se usa <code>@CookieValue</code> para obtener el valor directamente como parámetro.
-                                </p>
-                                <div class="code-box mt-2">
-                                    <pre>@GetMapping("/leer-cookie")
-public String leerCookie(
-    @CookieValue(
-        value = "usuario",
-        defaultValue = "Invitado")
-    String usuario) {
- 
-    return "Hola, " + usuario;
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-trash me-2"></i>Eliminar una cookie</strong>
-                                <p>Para eliminar una cookie se crea una nueva con el mismo nombre y <code>MaxAge</code>
-                                    en 0.
-                                </p>
-                                <div class="code-box mt-2">
-                                    <pre>@GetMapping("/eliminar-cookie")
-public String eliminarCookie(HttpServletResponse response) {
-    Cookie cookie = new Cookie("usuario", null);
-    cookie.setMaxAge(0);   // expira inmediatamente
-    cookie.setPath("/");
-    response.addCookie(cookie);
-    return "Cookie eliminada";
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tip-box">
-                        <i class="bi bi-shield-exclamation me-2"></i>
-                        <strong style="color:var(--primary2)">Importante:</strong>
-                        las cookies se almacenan en el cliente y pueden ser leídas por el usuario. Nunca guardes
-                        información sensible como contraseñas directamente en una cookie. Usa
-                        <code>setHttpOnly(true)</code>
-                        para evitar acceso desde JavaScript.
-                    </div>
-                </div>
-
-                <!-- SESIONES -->
-                <div class="content-box">
-                    <div class="section-label">Estado del servidor</div>
-                    <h2>Sesiones</h2>
-                    <p>
-                        Las sesiones permiten almacenar datos del usuario en el servidor entre diferentes solicitudes.
-                        A diferencia de las cookies, la información no viaja al cliente; solo se envía un identificador
-                        de sesión (<code>JSESSIONID</code>) que referencia los datos en el servidor.
-                    </p>
-
-                    <div class="row g-3 mt-3 align-items-stretch">
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-pencil-square me-2"></i>Guardar en sesión</strong>
-                                <div class="code-box mt-2">
-                                    <pre>@GetMapping("/guardar-sesion")
-public String guardarSesion(
-        HttpSession session) {
- 
-    session.setAttribute(
-        "usuario", "Carlos");
-    session.setAttribute(
-        "rol", "ADMIN");
- 
-    return "Sesión iniciada";
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-search me-2"></i>Leer de sesión</strong>
-                                <div class="code-box mt-2">
-                                    <pre>@GetMapping("/leer-sesion")
-public String leerSesion(
-        HttpSession session,
-        Model model) {
- 
-    String usuario = (String)
-        session.getAttribute("usuario");
- 
-    model.addAttribute("usuario", usuario);
-    return "perfil"; // → perfil.html
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión / invalidar</strong>
-                                <p>Se llama a <code>invalidate()</code> para destruir la sesión y eliminar todos sus
-                                    atributos.
-                                </p>
-                                <div class="code-box mt-2">
-                                    <pre>@GetMapping("/cerrar-sesion")
-public String cerrarSesion(HttpSession session) {
-    session.invalidate(); // elimina todos los atributos
-    return "redirect:/inicio";
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-3 mt-3">
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-clock-history me-2"></i>Tiempo de expiración</strong>
-                                <p>Se puede configurar cuánto tiempo dura inactiva una sesión antes de expirar.</p>
-                                <div class="code-box mt-2">
-                                    <pre>// Configurar en application.properties:
-server.servlet.session.timeout=30m
- 
-// O en código:
-session.setMaxInactiveInterval(1800);</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-arrow-left-right me-2"></i>Cookies vs Sesiones</strong>
-                                <p style="margin-bottom:12px;">Diferencias clave entre ambas formas de persistencia:</p>
-                                <table style="width:100%; font-size:0.85rem; color:var(--muted);">
-                                    <tr style="border-bottom:1px solid rgba(177,76,255,0.15)">
-                                        <td style="padding:6px 0; color:var(--primary2); font-weight:600"></td>
-                                        <td style="padding:6px 8px; color:var(--primary2); font-weight:600">Cookie</td>
-                                        <td style="padding:6px 0; color:var(--primary2); font-weight:600">Sesión</td>
-                                    </tr>
-                                    <tr style="border-bottom:1px solid rgba(177,76,255,0.1)">
-                                        <td style="padding:6px 0">Almacén</td>
-                                        <td style="padding:6px 8px">Cliente</td>
-                                        <td style="padding:6px 0">Servidor</td>
-                                    </tr>
-                                    <tr style="border-bottom:1px solid rgba(177,76,255,0.1)">
-                                        <td style="padding:6px 0">Seguridad</td>
-                                        <td style="padding:6px 8px">Menor</td>
-                                        <td style="padding:6px 0">Mayor</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:6px 0">Duración</td>
-                                        <td style="padding:6px 8px">Configurable</td>
-                                        <td style="padding:6px 0">Por inactividad</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- INYECCIÓN DE DEPENDENCIAS -->
-                <div class="content-box">
-                    <div class="section-label">IoC Container</div>
-                    <h2>Inyección de dependencias (@Autowired)</h2>
-                    <p>
-                        La inyección de dependencias (DI) es un principio de diseño donde Spring se encarga de crear y
-                        proporcionar los objetos que una clase necesita, en lugar de que la clase los cree ella misma.
-                        <code>@Autowired</code> le indica a Spring que inyecte automáticamente la dependencia.
-                    </p>
-
-                    <div class="row g-3 mt-3 align-items-stretch">
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-gear me-2"></i>1. Crear el servicio</strong>
-                                <p>Se anota con <code>@Service</code> para que Spring lo registre como componente
-                                    manejado.</p>
-                                <div class="code-box mt-2">
-                                    <pre>@Service
-public class SaludoService {
- 
-    public String obtenerSaludo(
-            String nombre) {
-        return "Hola, " + nombre + "!";
-    }
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-plug me-2"></i>2. Inyectar en el controlador</strong>
-                                <p>Spring detecta <code>@Autowired</code> e inyecta la instancia del servicio
-                                    automáticamente.
-                                </p>
-                                <div class="code-box mt-2">
-                                    <pre>@Controller
-public class HolaController {
- 
-    @Autowired
-    private SaludoService saludoService;
- 
-    @GetMapping("/hola")
-    public String hola(Model model) {
-        String msg = saludoService
-            .obtenerSaludo("Luis");
-        model.addAttribute("mensaje", msg);
-        return "hola"; // → hola.html
-    }
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="inner-card">
-                                <strong><i class="bi bi-award me-2"></i>Forma recomendada: inyección por
-                                    constructor</strong>
-                                <p>Spring recomienda usar el constructor en vez de <code>@Autowired</code> en el campo,
-                                    ya que facilita las pruebas unitarias y hace las dependencias explícitas.
-                                    Con <code>@RequiredArgsConstructor</code> de Lombok esto es aún más limpio.</p>
-                                <div class="code-box mt-2">
-                                    <pre>@Controller
-public class HolaController {
- 
-    private final SaludoService saludoService;
- 
-    // Spring inyecta automáticamente cuando hay un solo constructor
-    public HolaController(SaludoService saludoService) {
-        this.saludoService = saludoService;
-    }
- 
-    @GetMapping("/hola")
-    public String hola(Model model) {
-        model.addAttribute("mensaje",
-            saludoService.obtenerSaludo("Luis"));
-        return "hola";
-    }
-}</pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-3 mt-3">
-                        <div class="col-md-4">
-                            <div class="inner-card text-center">
-                                <i class="bi bi-box" style="font-size:2rem; color:var(--primary2);"></i>
-                                <strong class="d-block mt-2">@Component</strong>
-                                <small>Componente genérico manejado por Spring. Base de las demás anotaciones.</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="inner-card text-center">
-                                <i class="bi bi-gear-wide-connected" style="font-size:2rem; color:var(--primary2);"></i>
-                                <strong class="d-block mt-2">@Service</strong>
-                                <small>Para clases de lógica de negocio. Semánticamente indica que es un
-                                    servicio.</small>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="inner-card text-center">
-                                <i class="bi bi-database" style="font-size:2rem; color:var(--primary2);"></i>
-                                <strong class="d-block mt-2">@Repository</strong>
-                                <small>Para clases de acceso a datos. Añade traducción automática de
-                                    excepciones.</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tip-box">
-                        <i class="bi bi-info-circle me-2"></i>
-                        <strong style="color:var(--primary2)">¿Por qué usar DI?</strong>
-                        Al dejar que Spring gestione los objetos, el código queda desacoplado: puedes cambiar la
-                        implementación de un servicio sin tocar el controlador. Esto hace el código más fácil de
-                        mantener, probar y escalar.
-                    </div>
-                </div>
-
-
+            </div>
+        </div>
     </section>
 
 

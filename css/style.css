@@ -40,6 +40,23 @@
     color: var(--primary2);
 }
 
+
+.inner-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.code-box {
+    margin-top: auto;
+    min-height: 340px;
+}
+
+
+.code-box {
+    margin-top: auto;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -589,4 +606,64 @@ pre {
 .card-dark:hover::after {
 
     opacity: 1;
+}
+
+#game-info {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+#game-board {
+    display: grid;
+    /* Tablero de 15x15 */
+    grid-template-columns: repeat(15, 30px);
+    gap: 0px;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wall {
+    background-color: #1919A6;
+    border-radius: 4px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: #FFB8AE;
+    border-radius: 50%;
+}
+
+.player {
+    width: 24px;
+    height: 24px;
+    background-color: yellow;
+    border-radius: 50%;
+    /* Animación de boca de Pacman con CSS clip-path (opcional) */
+    clip-path: polygon(100% 74%, 44% 48%, 100% 21%, 100% 0, 74% 0, 0 0, 0 100%, 100% 100%);
+}
+
+.ghost {
+    width: 24px;
+    height: 24px;
+    background-color: #FF0000;
+    border-radius: 50% 50% 0 0;
+    position: relative;
 }
