@@ -20,7 +20,7 @@
         <div class="container-custom nav-container">
 
             <a href="../index.html" class="logo">
-                MJ Watson
+                HTML
             </a>
 
             <nav class="nav-links">
@@ -43,6 +43,7 @@
             <h2>¿Qué es HTML?</h2>
             <p>HTML (HyperText Markup Language) es el lenguaje estándar para crear páginas web. Define la estructura del
                 contenido mediante etiquetas.</p>
+            <p>Un ejemplo de la estructura de HTML es el siguiente:</p>
             <div class="code-box">
                 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang="es"&gt;
@@ -125,49 +126,93 @@
                 </table>
             </div>
         </div>
+        <div class="row align-items-center mt-3">
+            <div class="col-md-9">
+                <h2 class="bg-purple">Tablas</h2>
+                <p>
+                    Las tablas en HTML se utilizan para organizar y mostrar datos en filas y columnas.
+                    Son útiles cuando se desea presentar información estructurada, como horarios, listas o resultados.
+                </p>
 
-        <div class="content-box">
+                <p>
+                    Una tabla se construye utilizando etiquetas específicas como &lt;table&gt;, &lt;tr&gt; (filas),
+                    &lt;td&gt; (celdas de datos) y &lt;th&gt; (encabezados de columna).
+                </p>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="../img/espeon_umbreon.jpg" class="img-fluid rounded" alt="Ejemplo de tabla HTML">
+            </div>
+        </div>
+        <div class="content-box mt-5">
             <h2>Etiquetas semánticas</h2>
             <p>Las etiquetas semánticas describen el significado del contenido, no solo su apariencia:</p>
             <div class="row g-3 mt-2 align-items-stretch">
                 <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
                         <strong>&lt;header&gt;</strong><br><small>Encabezado de la
                             página o sección</small>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
                         <strong>&lt;nav&gt;</strong><br><small>Menú de
                             navegación</small>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
                         <strong>&lt;section&gt;</strong><br><small>Sección temática
                             del contenido</small>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
                         <strong>&lt;article&gt;</strong><br><small>Contenido
                             independiente</small>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
                         <strong>&lt;footer&gt;</strong><br><small>Pie de
                             página</small>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <div class="mb-0 p-3 rounded h-100"
+                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
                         <strong>&lt;main&gt;</strong><br><small>Contenido principal de la página, único por
                             documento</small>
                     </div>
                 </div>
             </div>
         </div>
+        <h2 class="bg-purple">Formularios</h2>
+        <p>
+            Los formularios en HTML permiten recopilar información del usuario, como datos personales,
+            mensajes o registros. Son utilizados en páginas web para interactuar con el usuario.
+        </p>
+        <p>
+            Se crean con la etiqueta &lt;form&gt; y pueden contener diferentes elementos como campos de texto,
+            botones, listas desplegables y casillas de verificación.
+        </p>
+        <p>
+            Los formularios envían los datos al servidor mediante métodos como GET o POST.
+        </p>
+        <p>Un ejemplo de formulario es el siguiente:</p>
+        <div class="code-box">
+            <pre>
+&lt;form&gt;
+    &lt;input type="text" placeholder="Nombre"&gt;
+    &lt;input type="submit" value="Enviar"&gt;
+&lt;/form&gt;
+</pre>
+        </div>
+
     </section>
 
     <footer class="footer">

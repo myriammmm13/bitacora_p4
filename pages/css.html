@@ -20,7 +20,7 @@
         <div class="container-custom nav-container">
 
             <a href="../index.html" class="logo">
-                MJ Watson
+                CSS
             </a>
 
             <nav class="nav-links">
@@ -40,8 +40,12 @@
     <section class="content-section container-custom">
         <div class="content-box">
             <h2>¿Qué es CSS?</h2>
-            <p>CSS (Cascading Style Sheets) es el lenguaje usado para describir la presentación de un documento HTML.
-                Controla colores, fuentes, espaciado, diseño y más.</p>
+            <p>
+                CSS (Cascading Style Sheets) es un lenguaje utilizado para definir la apariencia y el diseño de una
+                página web.
+                Permite aplicar colores, fuentes, tamaños, espacios y distribuciones a los elementos HTML, mejorando la
+                presentación visual del sitio.
+            </p>
         </div>
 
         <div class="content-box">
@@ -132,11 +136,35 @@
                 </table>
             </div>
         </div>
+        <div class="row align-items-center mt-3">
+            <div class="col-md-6">
+                <h2 class="bg-purple">Propiedades principales</h2>
+                <p>
+                    Las propiedades CSS definen cómo se verá un elemento en la página web. Las propiedades se
+                    escriben
+                    dentro de un bloque de reglas, con la sintaxis
+                    <code>propiedad: valor;</code>.
+                </p>
+                <p> Existen cientos de propiedades, pero algunas de las más comunes incluyen:
+                </p>
 
-        <div class="content-box">
-            <h2>Propiedades principales</h2>
-            <div class="code-box">
-                <pre>/* Color y fondo */
+
+                <ul>
+                    <li><b>color:</b> Define el color del texto.</li>
+                    <li><b>background:</b> Define el fondo del elemento.</li>
+                    <li><b>font-family:</b> Define el tipo de letra.</li>
+                    <li><b>font-size:</b> Define el tamaño del texto.</li>
+                    <li><b>margin:</b> Espacio exterior entre elementos.</li>
+                    <li><b>padding:</b> Espacio interior dentro del elemento.</li>
+                    <li><b>border:</b> Define bordes alrededor del elemento.</li>
+                    <li><b>width:</b> Define el ancho del elemento.</li>
+                    <li><b>height:</b> Define la altura del elemento.</li>
+                </ul>
+                <p>Ejemplo de uso:</p>
+            </div>
+            <div class="col-md-6">
+                <div class="code-box">
+                    <pre>/* Color y fondo */
 color: #ffffff;
 background: #000000;
 
@@ -154,10 +182,10 @@ border: 1px solid purple;
 /* Dimensiones */
 width: 100%;
 height: 200px;</pre>
+                </div>
             </div>
         </div>
-
-        <div class="content-box">
+        <div class="content-box mt-5">
             <h2>Modelo de Caja (Box Model)</h2>
             <p>Todo elemento HTML es una caja compuesta por cuatro capas:</p>
             <div class="row g-3 mt-2 align-items-stretch">
@@ -195,7 +223,6 @@ height: 200px;</pre>
 }</pre>
             </div>
         </div>
-
         <div class="content-box">
             <h2>Display y Position</h2>
             <div class="table-responsive mt-3">
@@ -243,40 +270,52 @@ height: 200px;</pre>
             </div>
         </div>
 
-        <div class="content-box">
-            <h2>Flexbox</h2>
-            <p>Flexbox es un modelo de diseño que permite alinear y distribuir elementos fácilmente dentro de un
-                contenedor.</p>
-            <div class="code-box">
-                <pre>.contenedor {
+        <h2 class="bg-purple">Flexbox</h2>
+
+        <p>
+            Flexbox es un sistema de diseño que permite organizar elementos en una fila o columna de forma flexible.
+            Facilita la alineación, distribución y adaptación de los elementos en diferentes tamaños de pantalla.
+        </p>
+
+        <p>
+            Se basa en un contenedor principal (flex container) y elementos hijos (flex items).
+        </p>
+
+        <div class="row align-items-center mt-3">
+            <div class="col-md-3">
+                <img src="../img/meow_solo.jpg" class="img-fluid rounded" alt="Diagrama Flexbox">
+            </div>
+            <div class="col-md-9">
+                <div class="code-box">
+
+                    <pre>.contenedor {
   display: flex;
   justify-content: center;  /* horizontal */
   align-items: center;      /* vertical */
   gap: 20px;                /* espacio entre hijos */
   flex-wrap: wrap;          /* permite salto de línea */
 }</pre>
+                </div>
             </div>
-            <div class="row g-3 mt-2 align-items-stretch">
-                <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100"
-                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
-                        <strong>justify-content</strong><br>
-                        <small>Alinea elementos en el eje principal (horizontal por defecto)</small>
-                    </div>
+
+        </div>
+        <div class="row g-3 mt-2 align-items-stretch">
+            <div class="col-md-4">
+                <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <strong>justify-content</strong><br>
+                    <small>Alinea elementos en el eje principal (horizontal por defecto)</small>
                 </div>
-                <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100"
-                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
-                        <strong>align-items</strong><br>
-                        <small>Alinea elementos en el eje secundario (vertical por defecto)</small>
-                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <strong>align-items</strong><br>
+                    <small>Alinea elementos en el eje secundario (vertical por defecto)</small>
                 </div>
-                <div class="col-md-4">
-                    <div class="mb-0 p-3 rounded h-100"
-                        style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
-                        <strong>flex-wrap</strong><br>
-                        <small>Permite que los elementos salten a la siguiente línea si no caben</small>
-                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-0 p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                    <strong>flex-wrap</strong><br>
+                    <small>Permite que los elementos salten a la siguiente línea si no caben</small>
                 </div>
             </div>
         </div>

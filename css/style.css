@@ -36,6 +36,10 @@
     padding: 20px;
 }
 
+.bg-purple {
+    color: var(--primary2);
+}
+
 * {
     margin: 0;
     padding: 0;
