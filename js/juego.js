@@ -2,7 +2,6 @@ const board = document.getElementById("game-board");
 const scoreDisplay = document.getElementById("score");
 const totalDisplay = document.getElementById("total");
 
-// 1: Pared, 0: Fruta, 2: Espacio vacío
 const layout = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -24,19 +23,17 @@ const layout = [
 const cells = [];
 let score = 0;
 let totalDots = 0;
-
-let playerIndex = 16; // Posición inicial del jugador
-
-// Array de fantasmas (puedes agregar más)
-const ghosts = [
-    { index: 28, color: 'red' },
-    { index: 196, color: 'pink' },
-    { index: 118, color: 'cyan' }
-];
-
+let playerIndex = 16; // Posición de inicio del jugador
 let gameActive = true;
 
-// Construir el tablero
+// Enemigos
+const ghosts = [
+    { index: 28, color: '#FF0000' }, // Rojo
+    { index: 196, color: '#FFB8FF' }, // Rosa
+    { index: 118, color: '#00FFFF' }  // Cyan
+];
+
+// Función para renderizar el mapa
 function createBoard() {
     for (let i = 0; i < layout.length; i++) {
         const cell = document.createElement("div");
@@ -48,7 +45,7 @@ function createBoard() {
             const dot = document.createElement("div");
             dot.classList.add("dot");
             cell.appendChild(dot);
-            totalDots++;
+            totalDots++; // Contamos el total para la condición de victoria
         }
 
         board.appendChild(cell);
@@ -59,9 +56,9 @@ function createBoard() {
 
 createBoard();
 
-// Dibujar elementos dinámicos
+// Función para dibujar jugador y fantasmas en sus posiciones
 function draw() {
-    // Limpiar posiciones
+    // Limpiar posiciones anteriores
     cells.forEach(cell => {
         const p = cell.querySelector('.player');
         if (p) p.remove();
@@ -84,39 +81,40 @@ function draw() {
     });
 }
 
-// Comer fruta
+// REQUISITO: Sistema de puntuación y Condición de victoria
 function eatDot() {
     if (layout[playerIndex] === 0) {
-        layout[playerIndex] = 2; // Marcar como vacío
+        layout[playerIndex] = 2; // Marcar la celda como vacía
         const dot = cells[playerIndex].querySelector('.dot');
         if (dot) dot.remove();
         score++;
         scoreDisplay.innerText = score;
 
+        // Verificar si ganó
         if (score === totalDots) {
             gameActive = false;
             setTimeout(() => {
-                alert("¡Felicidades, ganaste! Te comiste todo.");
+                alert("¡VICTORIA! Has recolectado todos los puntos.");
                 location.reload();
             }, 100);
         }
     }
 }
 
-// Colisión con fantasmas
+// REQUISITO: Detección de colisión (Jugador - Enemigo) y Condición de derrota
 function checkCollision() {
     ghosts.forEach(ghost => {
         if (ghost.index === playerIndex) {
             gameActive = false;
             setTimeout(() => {
-                alert("¡Oh no! Un fantasma te atrapó. Fin del juego.");
+                alert("¡DERROTA! Un fantasma te ha atrapado.");
                 location.reload();
             }, 100);
         }
     });
 }
 
-// Mover jugador
+// REQUISITO: Movimiento mediante el teclado
 function movePlayer(event) {
     if (!gameActive) return;
 
@@ -126,14 +124,14 @@ function movePlayer(event) {
     if (event.key === "ArrowUp") direction = -15;
     if (event.key === "ArrowDown") direction = 15;
 
-    // Prevenir el scroll de la página con las flechas
-    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(event.code) > -1) {
+    // Evitar que la pantalla haga scroll al jugar
+    if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(event.key) > -1) {
         event.preventDefault();
     }
 
     const nextIndex = playerIndex + direction;
 
-    // Validar que no sea pared
+    // Validar que el siguiente movimiento no sea una pared
     if (direction !== 0 && layout[nextIndex] !== 1) {
         playerIndex = nextIndex;
         eatDot();
@@ -142,18 +140,18 @@ function movePlayer(event) {
     }
 }
 
-// Mover fantasmas de forma aleatoria
+// REQUISITO: Enemigos con comportamiento básico (Movimiento Aleatorio)
 function moveGhosts() {
     if (!gameActive) return;
 
     ghosts.forEach(ghost => {
         const directions = [-1, 1, -15, 15]; // Izquierda, Derecha, Arriba, Abajo
 
-        // Filtrar direcciones válidas (que no sean paredes)
+        // Filtrar solo las direcciones que no chocan con paredes
         const validMoves = directions.filter(dir => layout[ghost.index + dir] !== 1);
 
         if (validMoves.length > 0) {
-            // Escoger una dirección válida al azar
+            // Seleccionar un movimiento aleatorio de los válidos
             const randomDir = validMoves[Math.floor(Math.random() * validMoves.length)];
             ghost.index += randomDir;
         }
@@ -163,7 +161,8 @@ function moveGhosts() {
     draw();
 }
 
+// Inicializar el juego
 draw();
 document.addEventListener("keydown", movePlayer);
-// Intervalo de movimiento de fantasmas (dificultad)
+// Intervalo para mover automáticamente a los fantasmas (400 milisegundos)
 setInterval(moveGhosts, 400);

@@ -667,3 +667,90 @@ pre {
     border-radius: 50% 50% 0 0;
     position: relative;
 }
+
+.nav-pills .nav-link.active {
+    background-color: #b14cff !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(177, 76, 255, 0.3);
+}
+
+.nav-pills .nav-link {
+    color: #b14cff;
+    font-weight: 500;
+}
+
+.nav-pills .nav-link:hover {
+    color: #d18aff;
+}
+
+.inner-card {
+    background: #1e1e2e;
+    border: 1px solid rgba(177, 76, 255, 0.25);
+    border-radius: 14px;
+    padding: 20px;
+    height: 100%;
+}
+
+.inner-card strong {
+    color: var(--primary2);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.inner-card small,
+.inner-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 0.9rem;
+}
+
+.diff-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.diff-badge.controller {
+    background: rgba(59, 130, 246, 0.15);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.diff-badge.rest {
+    background: rgba(52, 211, 153, 0.15);
+    color: #6ee7b7;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.section-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.tip-box {
+    background: rgba(177, 76, 255, 0.07);
+    border-left: 3px solid var(--primary);
+    border-radius: 0 12px 12px 0;
+    padding: 14px 20px;
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.thymeleaf-attr {
+    display: inline-block;
+    background: rgba(177, 76, 255, 0.12);
+    color: var(--primary2);
+    border-radius: 6px;
+    padding: 1px 8px;
+    font-family: monospace;
+    font-size: 0.88rem;
+}

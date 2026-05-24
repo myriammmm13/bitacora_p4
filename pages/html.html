@@ -203,16 +203,86 @@
         <p>
             Los formularios envían los datos al servidor mediante métodos como GET o POST.
         </p>
-        <p>Un ejemplo de formulario es el siguiente:</p>
-        <div class="code-box">
-            <pre>
-&lt;form&gt;
-    &lt;input type="text" placeholder="Nombre"&gt;
-    &lt;input type="submit" value="Enviar"&gt;
-&lt;/form&gt;
-</pre>
+
         </div>
 
+        <div class="content-box mt-4">
+            <h2>Tipos de Input</h2>
+            <p>El elemento <code>&lt;input&gt;</code> cambia su comportamiento según el atributo <code>type</code>.
+                Estos son los más importantes:</p>
+            <div class="table-responsive mt-3">
+                <table class="table table-dark table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Ejemplo de código</th>
+                            <th>Uso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>text</code></td>
+                            <td><code>&lt;input type="text"&gt;</code></td>
+                            <td>Texto libre de una línea</td>
+                        </tr>
+                        <tr>
+                            <td><code>email</code></td>
+                            <td><code>&lt;input type="email"&gt;</code></td>
+                            <td>Valida formato de correo electrónico</td>
+                        </tr>
+                        <tr>
+                            <td><code>password</code></td>
+                            <td><code>&lt;input type="password"&gt;</code></td>
+                            <td>Oculta los caracteres escritos</td>
+                        </tr>
+                        <tr>
+                            <td><code>number</code></td>
+                            <td><code>&lt;input type="number"&gt;</code></td>
+                            <td>Solo acepta valores numéricos</td>
+                        </tr>
+                        <tr>
+                            <td><code>checkbox</code></td>
+                            <td><code>&lt;input type="checkbox"&gt;</code></td>
+                            <td>Casilla de verificación (sí/no)</td>
+                        </tr>
+                        <tr>
+                            <td><code>radio</code></td>
+                            <td><code>&lt;input type="radio" name="grupo"&gt;</code></td>
+                            <td>Selección única dentro de un grupo</td>
+                        </tr>
+                        <tr>
+                            <td><code>date</code></td>
+                            <td><code>&lt;input type="date"&gt;</code></td>
+                            <td>Selector de fecha</td>
+                        </tr>
+                        <tr>
+                            <td><code>file</code></td>
+                            <td><code>&lt;input type="file"&gt;</code></td>
+                            <td>Permite subir archivos</td>
+                        </tr>
+                        <tr>
+                            <td><code>submit</code></td>
+                            <td><code>&lt;input type="submit" value="Enviar"&gt;</code></td>
+                            <td>Botón para enviar el formulario</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="code-box mt-3">
+                <pre>&lt;form&gt;
+    &lt;input type="text"     placeholder="Nombre"&gt;
+    &lt;input type="email"    placeholder="Correo"&gt;
+    &lt;input type="password" placeholder="Contraseña"&gt;
+    &lt;input type="number"   placeholder="Edad"&gt;
+    &lt;input type="date"&gt;
+    &lt;input type="checkbox"&gt; Acepto términos
+    &lt;input type="radio" name="genero"&gt; Opción A
+    &lt;input type="radio" name="genero"&gt; Opción B
+    &lt;input type="file"&gt;
+    &lt;input type="submit" value="Enviar"&gt;
+&lt;/form&gt;</pre>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">

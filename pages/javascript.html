@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repositorio P4</title>
+    <title>JavaScript - Repositorio P4</title>
     <link rel="icon" type="image/jpg" href="../img/ditto.jpg">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -16,66 +16,360 @@
 <body>
 
     <header class="header">
-
         <div class="container-custom nav-container">
-
             <a href="../index.html" class="logo">
                 JavaScript
             </a>
-
             <nav class="nav-links">
                 <a href="../index.html">Home</a>
                 <a href="internet.html">Internet</a>
                 <a href="html.html">HTML</a>
                 <a href="css.html">CSS</a>
                 <a href="backend.html">Back-End</a>
-                <a href="javascript.html">JavaScript</a>
+                <a href="javascript.html" style="color: var(--primary2);">JavaScript</a>
                 <a href="juego.html">Juego</a>
             </nav>
-
         </div>
-
     </header>
 
     <section class="content-section container-custom">
 
-        <div class="content-box">
-
-            <h2>JavaScript</h2>
-
-            <p>
-                JavaScript es un lenguaje de programación que se utiliza para crear contenido dinámico en páginas web.
+        <div class="content-box mb-5">
+            <div class="section-label">Fundamentos</div>
+            <h2>¿Qué es JavaScript?</h2>
+            <p class="lead">
+                JavaScript es un lenguaje de programación interpretado, orientado a objetos y de alto nivel. Es el motor
+                fundamental de la interactividad en la web moderna, permitiendo transformar páginas estáticas en
+                aplicaciones dinámicas y reactivas a las acciones del usuario.
             </p>
-
-            <div class="code-box">
-
-                <pre>
-function saludar() {
-    console.log("¡Hola, mundo!");
-}
-                </pre>
-
-            </div>
-
         </div>
 
-        <div class="content-box">
-
-            <h2>Modelo OSI</h2>
-
+        <div class="content-box mb-4">
+            <h2>1. Variables y Tipos de Datos</h2>
             <p>
-                El modelo OSI divide la comunicación en 7 capas.
+                En JavaScript moderno, las variables se declaran utilizando <code>let</code> (para valores que pueden
+                cambiar) y <code>const</code> (para valores constantes). Los tipos de datos principales incluyen:
+                Cadenas (Strings), Números (Numbers), Booleanos (Booleans), Objetos (Objects) y Arreglos (Arrays).
+            </p>
+            <div class="code-box">
+                <pre>
+// Declaración de variables modernas
+const nombre Estudiante = "MJ Watson"; 
+let edad = 20; 
+let esAprobado = true; 
+
+// Objetos y Arreglos complejos
+const notas = [95, 88, 100];
+const curso = { nombre: "Programación IV", periodo: "2026" };
+                </pre>
+            </div>
+        </div>
+
+        <div class="content-box mb-4">
+            <h2>2. Manipulación del DOM (Document Object Model)</h2>
+            <p>
+                El DOM es la estructura de árbol que representa el documento HTML. JavaScript permite acceder,
+                modificar, añadir o eliminar elementos del DOM dinámicamente utilizando métodos de selección.
             </p>
 
-            <img src="../img/internet.png" alt="OSI">
+            <div class="table-responsive my-3">
+                <table class="table table-bordered table-dark text-white align-middle"
+                    style="border-color: rgba(177,76,255,0.25);">
+                    <thead>
+                        <tr style="background-color: #2a2a3f;">
+                            <th style="width: 40%;">Método de Selección</th>
+                            <th>Descripción / Función</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>document.getElementById("id")</code></td>
+                            <td>Selecciona un único elemento basado en su atributo ID único.</td>
+                        </tr>
+                        <tr>
+                            <td><code>document.querySelector(".clase")</code></td>
+                            <td>Selecciona el primer elemento que coincida con el selector CSS provisto.</td>
+                        </tr>
+                        <tr>
+                            <td><code>document.createElement("etiqueta")</code></td>
+                            <td>Crea dinámicamente un nuevo elemento HTML en memoria.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <div class="code-box">
+                <pre>
+// Ejemplo: Crear y agregar un elemento al HTML desde JS
+const tablero = document.getElementById("game-board");
+const nuevaCelda = document.createElement("div");
+
+nuevaCelda.classList.add("cell", "wall"); // Asigna clases de CSS
+tablero.appendChild(nuevaCelda); // Inserta el elemento en la interfaz
+                </pre>
+            </div>
+        </div>
+
+        <div class="content-box mb-4">
+            <h2>3. Manejo de Eventos y Control del Tiempo</h2>
+            <p>
+                Los eventos permiten capturar las acciones del usuario (clicks, presionar teclas, movimientos del
+                mouse). Junto con las funciones de temporización (como <code>setInterval</code>), permiten crear
+                dinámicas en tiempo real.
+            </p>
+
+            <div class="row g-4 mt-1">
+                <div class="col-md-6">
+                    <div class="p-3 rounded h-100" style="background:#1e1e2e; border:1px solid rgba(177,76,255,0.25);">
+                        <h4 class="text-purple"><i class="bi bi-keyboard me-2"></i>Eventos de Teclado y de Tiempo</h4>
+                        <p class="small text-muted">Esencial para detectar el movimiento del jugador mediante
+                            periféricos.</p>
+                        <div class="code-box bg-dark p-2 rounded">
+                            <pre style="font-size: 13px; margin-bottom: 0;">
+//Evento de Teclado: Captura la pulsación de teclas para mover al personaje
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp") {
+        console.log("Mover personaje hacia arriba");
+    }
+});
+
+
+//Evento de Tiempo: Ejecuta una función cada cierto intervalo de tiempo
+
+// Mueve a los enemigos automáticamente cada 400ms
+setInterval(moverEnemigosAleatorios, 400);</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 text-center">
+                    <img src="../img/ghastly.png" class="img-fluid rounded" alt="Ghastly"
+                        style="max-height: 240px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box mb-4">
+            <h2>4. Catálogo Principal de Eventos</h2>
+            <p>
+                Para añadir interactividad, JavaScript escucha diferentes tipos de eventos disparados por el usuario o
+                por el navegador. A continuación se detallan los más importantes clasificados por su origen:
+            </p>
+
+            <ul class="nav nav-pills mb-3 mt-4" id="eventTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#mouse-events"
+                        type="button"><i class="bi bi-mouse me-2"></i>Ratón</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#keyboard-events" type="button"><i
+                            class="bi bi-keyboard me-2"></i>Teclado</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#form-events" type="button"><i
+                            class="bi bi-ui-radios me-2"></i>Formularios</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#window-events" type="button"><i
+                            class="bi bi-browser-chrome me-2"></i>Ventana/Documento</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="eventTabsContent">
+
+                <div class="tab-pane fade show active" id="mouse-events" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-dark text-white align-middle"
+                            style="border-color: rgba(177,76,255,0.25);">
+                            <thead style="background-color: #2a2a3f;">
+                                <tr>
+                                    <th style="width: 25%;">Evento</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>click</code></td>
+                                    <td>Se dispara al presionar y soltar el botón principal del ratón sobre un elemento.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code>dblclick</code></td>
+                                    <td>Se dispara al hacer doble clic rápidamente sobre un elemento.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mousedown</code></td>
+                                    <td>Se dispara en el instante exacto en que se presiona un botón del ratón.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mouseup</code></td>
+                                    <td>Se dispara en el instante exacto en que se suelta un botón del ratón.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mousemove</code></td>
+                                    <td>Se dispara continuamente mientras el puntero del ratón se mueve dentro de un
+                                        elemento.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mouseenter</code></td>
+                                    <td>Se dispara cuando el puntero entra en los límites de un elemento (no aplica a
+                                        sus hijos).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mouseleave</code></td>
+                                    <td>Se dispara cuando el puntero sale de los límites de un elemento.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mouseover</code></td>
+                                    <td>Similar a mouseenter, pero se dispara también cuando el puntero entra en los
+                                        elementos hijos.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mouseout</code></td>
+                                    <td>Similar a mouseleave, pero también reacciona ante los elementos hijos.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>contextmenu</code></td>
+                                    <td>Se dispara al hacer clic derecho, justo antes de que aparezca el menú
+                                        contextual.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="keyboard-events" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-dark text-white align-middle"
+                            style="border-color: rgba(177,76,255,0.25);">
+                            <thead style="background-color: #2a2a3f;">
+                                <tr>
+                                    <th style="width: 25%;">Evento</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>keydown</code></td>
+                                    <td>Se dispara en el instante en que el usuario presiona una tecla.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>keyup</code></td>
+                                    <td>Se dispara cuando el usuario suelta la tecla previamente presionada.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="form-events" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-dark text-white align-middle"
+                            style="border-color: rgba(177,76,255,0.25);">
+                            <thead style="background-color: #2a2a3f;">
+                                <tr>
+                                    <th style="width: 25%;">Evento</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>focus</code></td>
+                                    <td>Se dispara cuando un elemento (como un input) recibe el foco para interactuar
+                                        con él.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>blur</code></td>
+                                    <td>Se dispara cuando un elemento pierde el foco (por ejemplo, al hacer clic fuera
+                                        del input).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>change</code></td>
+                                    <td>Se dispara cuando el valor de un elemento <code>&lt;input&gt;</code>,
+                                        <code>&lt;select&gt;</code> o <code>&lt;textarea&gt;</code> cambia y además
+                                        pierde el foco.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code>select</code></td>
+                                    <td>Se dispara cuando el usuario selecciona texto dentro de un campo de texto (input
+                                        o textarea).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="window-events" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-dark text-white align-middle"
+                            style="border-color: rgba(177,76,255,0.25);">
+                            <thead style="background-color: #2a2a3f;">
+                                <tr>
+                                    <th style="width: 25%;">Evento</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>DOMContentLoaded</code></td>
+                                    <td>Se dispara (en el <code>document</code>) cuando el HTML ha sido completamente
+                                        cargado y analizado, sin esperar a hojas de estilo o imágenes.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>load</code></td>
+                                    <td>Se dispara cuando toda la página y sus recursos dependientes (imágenes, estilos)
+                                        han terminado de cargar por completo.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>resize</code></td>
+                                    <td>Se dispara continuamente cuando el usuario cambia las dimensiones de la ventana
+                                        del navegador.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>scroll</code></td>
+                                    <td>Se dispara al mover la barra de desplazamiento de un elemento específico o de la
+                                        ventana entera.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>beforeunload</code></td>
+                                    <td>Se dispara justo antes de que la ventana, el documento y sus recursos comiencen
+                                        a descargarse (útil para diálogos de "guardar cambios").</td>
+                                </tr>
+                                <tr>
+                                    <td><code>unload</code></td>
+                                    <td>Se dispara cuando el documento o un elemento hijo se está descargando (la página
+                                        se cierra).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content-box mb-4 text-center p-4"
+            style="background: #1e1e2e; border: 1px solid rgba(177,76,255,0.25);">
+            <div class="mb-2"><i class="bi bi-controller" style="font-size: 3rem; color: #b14cff;"></i></div>
+            <h3>Aplicación Práctica: Videojuego en JavaScript Puro</h3>
+            <p class="mt-3">
+                Toda la teoría expuesta arriba (estructuras de datos matriciales, captura del teclado con
+                <code>keydown</code>, renderizado dinámico mediante el DOM y bucles de juego controlados por intervalos)
+                se unifica para dar vida al juego de <strong>Pac-Man</strong> desarrollado para este repositorio.
+            </p>
+
+            <a href="juego.html" class="btn btn-lg text-white mt-2 px-4 py-2"
+                style="background-color: #b14cff; border-color: #b14cff; font-weight: 500; box-shadow: 0 4px 15px rgba(177, 76, 255, 0.3);">
+                Ir al Juego Prototipo <i class="bi bi-arrow-right ms-2"></i>
+            </a>
         </div>
 
     </section>
 
-    <footer class="footer">
-        <p>Proyecto Programación IV
-        </p>
+    <footer class="footer mt-5">
+        <p>Proyecto Programación IV</p>
         <p>Autor: MJ Watson - 2026</p>
     </footer>
 

@@ -207,15 +207,24 @@ public class ApiController {
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-text">
-                            <p>Muestra valores dinámicos provenientes del controlador.</p>
                             <div class="code-box">
-                                <pre class="m-0">&lt;p th:text="${mensaje}"&gt;&lt;/p&gt;</pre>
+                                <pre class="m-0">&lt;!-- El valor de ${mensaje} reemplazará este texto --&gt;
+&lt;div class="bienvenida"&gt;
+    &lt;p th:text="${mensaje}"&gt;
+        Hola, este texto de ejemplo desaparecerá al cargar la página.
+    &lt;/p&gt;
+&lt;/div&gt;</pre>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-each">
                             <p>Itera listas de objetos para crear elementos repetitivos.</p>
                             <div class="code-box">
-                                <pre class="m-0">&lt;li th:each="f : ${frutas}" th:text="${f}"&gt;&lt;/li&gt;</pre>
+                                <pre class="m-0">&lt;!-- Genera elementos de lista iterando la colección --&gt;
+&lt;ul&gt;
+    &lt;li th:each="f : ${frutas}" th:text="${f}"&gt;
+        Manzana (Este es un texto de ejemplo de relleno)
+    &lt;/li&gt;
+&lt;/ul&gt;</pre>
                             </div>
                         </div>
                     </div>
@@ -226,19 +235,30 @@ public class ApiController {
                 <div class="content-box h-100 d-flex flex-column" style="background-color: #252538;">
                     <div class="section-label">IoC</div>
                     <h2>Inyección de dependencias</h2>
-                    <p class="flex-grow-1">Permite que Spring gestione automáticamente los objetos (Beans) y sus
-                        dependencias usando <code>@Autowired</code>.</p>
-                    <div class="code-box mt-auto">
-                        <pre class="m-0">@Service
-public class SaludoService {}
 
-@Autowired
-private SaludoService servicio;</pre>
+                    <p class="mb-3">Permite que Spring gestione automáticamente los objetos (Beans) y sus
+                        dependencias usando <code>@Autowired</code>.</p>
+
+                    <div class="code-box">
+                        <pre class="m-0">@Service
+                            
+public class SaludoService {
+    public String generarSaludo() {
+        return "¡Hola, dependencia inyectada!";
+    }
+}
+
+@Controller
+
+public class MiControlador {
+    
+    @Autowired
+    private SaludoService servicio;
+}</pre>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="content-box mt-4">
             <div class="row align-items-center">
                 <div class="col-md-4">
